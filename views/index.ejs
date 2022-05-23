@@ -3,7 +3,7 @@
 
 <body>
   
-  <div class="container">
+  <div class= "container">
     <hr>
     <div class="jumbotron">
       <h1 class="display-4">Bem vindo!</h1>
@@ -13,18 +13,20 @@
       <a class="btn btn-primary btn-lg" href="#" role="button">Leia mais</a>
     </div>  
     <hr>
-    <% articles.forEach(article => { %>
+
+    <% articles.forEach(article    => { %>
       <div class="card">
         <div class="card-header">
-          <%= article.title %>
+         <h2><%= article.title %></h2>
         </div>
         <div class="card-body">
-          <a class="btn btn-success" href="">Ler artigos</a>
+          <a class="btn btn-success" href="/<%= articles.slug%>">Ler artigos</a>
         </div>
       </div>
       <br>
     <% })%>
-</div>
+
+  </div>
 </body>
 
 <%- include('partials/footer.ejs') %>
