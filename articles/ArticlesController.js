@@ -5,9 +5,8 @@ const Article = require("./Article");
 const slugify  = require("slugify");
 
 router.get("/admin/articles",(req, res)=>{
-   Article.findAll({
-       include: [{model: Category}]
-   }).then(articles =>{
+    Article.findAll({include: Category})
+   .then(articles =>{
     res.render("admin/articles/index",{articles: articles});
    })
 })
@@ -27,7 +26,7 @@ router.post("/articles/save",(req, res)=>{
     var body  = req.body.body;
     var categoryId = req.body.category;
 
-    Articles.create({
+    Article.create({
         title: title,
         slug: slug,
         body: body,
@@ -39,7 +38,7 @@ router.post("/articles/save",(req, res)=>{
 
 router.get("/articles/delete/:id",(req, res)=>{
     var id = req.params.id;
-    Articles.destroy({
+    Article.destroy({
         where: {
             id:id
         }
