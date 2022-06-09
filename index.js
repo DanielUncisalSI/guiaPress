@@ -1,4 +1,4 @@
-//vamos iniciar na aula 103
+//vamos iniciar na aula 106
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
@@ -49,7 +49,7 @@ app.get("/:slug",(req, res)=>{
             slug: slug
         }
     }).then(article =>{
-        if(article!= undefined){
+        if(article != undefined){
             Category.findAll().then(categories=>{
                 res.render("article",{article: article, categories: categories});
             })
@@ -63,7 +63,7 @@ app.get("/:slug",(req, res)=>{
 
 app.get("/category/:slug",(req,res)=>{
     var slug = req.params.slug;
-    Category:findOne({
+    Category.findOne({
         where:{
          slug: slug   
         },
