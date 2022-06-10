@@ -2,7 +2,7 @@ const Sequelize = require("sequelize");
 
 var database = 'Guiapress';
 var user     = 'root';
-var password = 'root';
+var password = '';
 var host     = 'localhost';
 var dialect  = 'mysql';
 var timezone = '-03:00';

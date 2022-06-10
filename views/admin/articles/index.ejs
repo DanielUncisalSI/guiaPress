@@ -23,6 +23,7 @@
             <td> <%= article.slug %> </td>
             <td> <%= article.category.title %> </td>
             <td>
+              <a class="btn btn-warning" href="/articles/edit/<%= article.id %>">Editar</a>
               <a onclick="confirmaDelecao(event)" class="btn btn-danger" 
               href="/articles/delete/<%- article.id%>">Deletar</a>
             </td>

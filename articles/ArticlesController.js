@@ -47,4 +47,12 @@ router.get("/articles/delete/:id",(req, res)=>{
     })
 });
 
+
+router.get("/articles/edit/:id",(req, res)=>{
+    Article.findByPk(req.params.id)
+    .then(article => {
+        res.render("admin/articles/edit",{article: article});
+    })
+});
+
 module.exports = router;
