@@ -1,4 +1,4 @@
-//vamos iniciar na aula 106
+//seção 7 vamos iniciar na aula 106
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
@@ -81,6 +81,6 @@ app.get("/category/:slug",(req,res)=>{
     })
 });
 
-app.listen(8080, ()=>{
+app.listen(3000, ()=>{
     console.log("O servidor está rodando");
 })

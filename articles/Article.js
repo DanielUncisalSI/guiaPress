@@ -20,5 +20,6 @@ const Article = connection.define('articles',{
 
 Category.hasMany(Article); //relacionamento muitos para um
 Article.belongsTo(Category); //relacionamento um para um
+//Article.sync({force: false});
 
-module.exports = Article
+module.exports = Article;

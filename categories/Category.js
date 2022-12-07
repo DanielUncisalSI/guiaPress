@@ -10,7 +10,6 @@ const Category = connection.define('categories',{
         type: Sequelize.STRING,
         allowNull: false
     }
-})
-
+});
 
 module.exports = Category;
