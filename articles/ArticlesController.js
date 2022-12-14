@@ -48,11 +48,22 @@ router.get("/articles/delete/:id",(req, res)=>{
 });
 
 
-router.get("/articles/edit/:id",(req, res)=>{
-    Article.findByPk(req.params.id)
-    .then(article => {
-        res.render("admin/articles/edit",{article: article});
-    })
+router.get("/admin/articles/edit/:id",(req, res)=>{
+   var id = req.params.id;
+   //aqui está buscando um artigo pelo id e guardando na variavel article que poderia ser qualquer nome
+   Article.findByPk(id).then(article => {
+    if(article != undefined){
+       Category.findAll().then(categories =>{
+        res.render("admin/articles/edit", {categories : categories, article: article}) 
+       }) 
+       
+    }else{
+        res.redirect("/")  
+    }
+
+   }).catch(err => {
+        res.redirect("/")
+   })
 });
 
 module.exports = router;

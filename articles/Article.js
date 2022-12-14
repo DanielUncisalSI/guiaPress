@@ -18,8 +18,10 @@ const Article = connection.define('articles',{
 })
 
 
-Category.hasMany(Article); //relacionamento muitos para um
-Article.belongsTo(Category); //relacionamento um para um
+Category.hasMany(Article); //uma categoria tem muitos artigos relacionamento um pra muitos  HAS= TEM, MANY = MUITOS
+Article.belongsTo(Category); //relacionamento um para um belongsTo = pertence
+
+//Article.sync({force: true});
 
 module.exports = Article;
-//Article.sync({force: false});
+

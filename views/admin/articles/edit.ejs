@@ -4,15 +4,49 @@
 <div class="container">
     <hr>
     <div class="card">
-        <div class="header">
-            <h2>Edição de artigos</h2>
-        </div> 
+        <div class="card-header">
+            <h2>Editar Artigo</h2>
+        </div>
         <div class="card-body">
-            <form method="post" action="#">
-                <input value="<%= article.title %>" autofocus class="form-control" type="text" name="title" > <br>
+            <form method="post" action="/articles/save">
+                <input value="<%= article.title%>" autofocus class="form-control" type="text" name="title" placeholder="defina um titulo do artigo"> <br>
+                <textarea alue="<%= article.body%>" id="article" class="form-control" placeholder="Escreva o artigo aqui" name="body"></textarea><br>
+                <label for="">Categoria</label>
+                <select class="form-control" name="category" >
+                    <option></option>
+                    <% categories.forEach( (category) => { %>
+                        <option value="<%- category.id%>"> <%- category.title %></option>
+                    <% }) %>   
+                </select> <br>
                 <button type="submit" class="btn btn-success">Atualizar</button>
-            </form>    
-        </div>       
-    </div>    
-
+            </form> 
+        </div>
+    </div>
 </div>
+
+<%- include('../../partials/footer.ejs') %>
+
+<script src="/tinymce/tinymce.min.js"></script>
+
+<script>
+    tinymce.init({
+                language: 'pt_BR',
+                selector: "#article",
+                plugins: [
+                    'advlist',
+                    'autolink',
+                    'link',
+                    'image',
+                    'lists',
+                    'preview',
+                    'searchreplace',
+                    'wordcount',
+                    'fullscreen',
+                    'insertdatetime',
+                    'media',
+                    'save',
+                    'table',
+                    'emoticons',
+                ]
+            })
+</script>    

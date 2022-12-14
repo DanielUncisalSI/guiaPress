@@ -1,4 +1,4 @@
-//seção 7 vamos iniciar na aula 106
+//seção 7 vamos iniciar na aula 108
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
