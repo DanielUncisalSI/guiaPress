@@ -1,4 +1,4 @@
-//seção 7 vamos iniciar na aula 108
+//seção 7 vamos iniciar na aula 115
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
@@ -33,7 +33,8 @@ app.use("/", articlesController);
 
 app.get("/",(req, res) =>{
     Article.findAll({
-        order:[['id','DESC']]
+        order:[['id','DESC']],
+        limit: 4
     }).then(articles => {
         Category.findAll().then(categories =>{
             res.render("index",{articles: articles, categories: categories});

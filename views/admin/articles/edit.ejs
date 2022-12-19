@@ -8,20 +8,28 @@
             <h2>Editar Artigo</h2>
         </div>
         <div class="card-body">
-            <form method="post" action="/articles/save">
+            <form method="post" action="/articles/update">
+               <input name="id" type="hidden" value="<%= article.id %>">
                 <input value="<%= article.title%>" autofocus class="form-control" type="text" name="title" placeholder="defina um titulo do artigo"> <br>
-                <textarea alue="<%= article.body%>" id="article" class="form-control" placeholder="Escreva o artigo aqui" name="body"></textarea><br>
+                <textarea id="article" class="form-control" placeholder="Escreva o artigo aqui" name="body"></textarea><br>
                 <label for="">Categoria</label>
                 <select class="form-control" name="category" >
-                    <option></option>
                     <% categories.forEach( (category) => { %>
-                        <option value="<%- category.id%>"> <%- category.title %></option>
+                        <% if(category.id == article.categoryId ) { %>
+                            <option value="<%= category.id %>" selected><%= category.title %></option>
+                        <% } else { %>
+                            <option value="<%= category.id %>"><%= category.title %></option>
+                            <% } %>   
                     <% }) %>   
                 </select> <br>
                 <button type="submit" class="btn btn-success">Atualizar</button>
             </form> 
         </div>
     </div>
+</div>
+
+<div id="content" style="display: none;">
+    <%- article.body%>
 </div>
 
 <%- include('../../partials/footer.ejs') %>
@@ -47,6 +55,10 @@
                     'save',
                     'table',
                     'emoticons',
-                ]
+                ],
+                //aqui usado para preencher o text area do tinymce, criando uma div oculta e pegando os dados via jquery e envianado para textarea
+                init_instance_callback: () => {
+                    tinymce.get("article").setContent($("#content").html())
+                }
             })
 </script>    
