@@ -99,7 +99,7 @@ router.get("/articles/page/:num",(req, res)=>{
     if(isNaN(page) || page == 1){
         offset = 0;
     }else{
-        offset = parseInt(page) * 4;
+        offset = (parseInt(page)-1) * 4;
     }
     //metodo findAndCountAll retorna count e
     Article.findAndCountAll({
@@ -121,6 +121,7 @@ router.get("/articles/page/:num",(req, res)=>{
             page: parseInt(page),
             next: next,
             articles: articles,
+            of: offset,
         }
 
         Category.findAll().then(categories => {
