@@ -1,4 +1,4 @@
-//seção 7 vamos iniciar na aula 117
+//seção 7 vamos iniciar na aula 118
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
@@ -6,9 +6,11 @@ const connection = require("./database/database");
 
 const categoriesController = require("./categories/CategoriesController");
 const articlesController   = require("./articles/ArticlesController");
+const usersController = require("./users/UsersController");
 
 const Article  = require("./articles/Article");
 const Category = require("./categories/Category");
+const User     = require("./users/User"); 
 
 //carregar a view engine deve criar uma pasta views
 app.set('view engine','ejs');
@@ -30,6 +32,7 @@ connection.authenticate()
 
 app.use("/", categoriesController);
 app.use("/", articlesController);
+app.use("/", usersController);
 
 app.get("/",(req, res) =>{
     Article.findAll({
