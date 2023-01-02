@@ -11,6 +11,7 @@ const usersController = require("./users/UsersController");
 const Article  = require("./articles/Article");
 const Category = require("./categories/Category");
 const User     = require("./users/User"); 
+const { get } = require("./users/UsersController");
 
 //carregar a view engine deve criar uma pasta views
 app.set('view engine','ejs');
@@ -44,6 +45,10 @@ app.get("/",(req, res) =>{
         })
         
     })
+})
+
+app.get("/admin",(regq, res) =>{
+    res.render("admin")
 })
 
 app.get("/:slug",(req, res)=>{
