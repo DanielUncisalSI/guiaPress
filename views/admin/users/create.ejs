@@ -1,6 +1,21 @@
 <%- include("../../partials/header.ejs") %>
 <%- include("../../partials/navbar.ejs")%>
 
-
+<div class="container">
+    <hr>
+    <div class="card mt-5">
+        <div class="card-header">
+            Criação de Usuário
+        </div>    
+        <div class="card-body">
+            <form action="/users/create" method="post">
+                <input class="form-control" type="email" name="email" placeholder="email@exemplo.com.br">
+                <input class="form-control" type="password" name="password" placeholder="*******"><br>
+                                                     <!-- btn-block aumenta o campo ate o tamanho do form -->
+                <button type="submit" class="btn btn-success btn-block" >Criar</button>
+            </form>
+        </div>
+    </div>
+</div>
 
 <%- include("../../partials/footer.ejs")%>
