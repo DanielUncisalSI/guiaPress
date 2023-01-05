@@ -34,7 +34,9 @@ router.post("/articles/save",(req, res)=>{
             categoryId: categoryId
         }).then(()=>{
             res.redirect("/admin/articles");
-      })  
+      }).catch((err)=>{
+            res.redirect("/admin/articles");
+      })
     
    
 })
