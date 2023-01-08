@@ -1,7 +1,8 @@
-//seção 7 vamos iniciar na aula 122
+//seção 8 vamos iniciar na aula 129
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
+const session = require("express-session")
 const connection = require("./database/database");
 
 const categoriesController = require("./categories/CategoriesController");
@@ -15,6 +16,14 @@ const { get } = require("./users/UsersController");
 
 //carregar a view engine deve criar uma pasta views
 app.set('view engine','ejs');
+
+// session
+app.use(session({
+   secret: "qualquercoisa",
+   cookie: {maxAge: 30000} //serve como referencia pra as sessoes no servodor
+
+}))    
+// session
 
 //arquivos static -- css. js....
 app.use(express.static('public'));
@@ -34,6 +43,28 @@ connection.authenticate()
 app.use("/", categoriesController);
 app.use("/", articlesController);
 app.use("/", usersController);
+
+app.get("/session",(req, res) => {
+    req.session.treinamento = "Formação Node.js"
+    req.session.ano = "2023"
+    req.session.email = "danielubt@hotmail.com"
+    req.session.user = {
+        username: "Daniel Lima",
+        email: "caroline@ig.com.br",
+        id:10
+    }
+    res.send("Sessão gerada"); 
+});
+
+app.get("/leitura",(req, res) => {
+    res.json({
+        treinamento: req.session.treinamento,
+        ano:  req.session.ano,
+        email: req.session.email,
+        user:  req.session.user
+    })
+    
+})
 
 app.get("/",(req, res) =>{
     Article.findAll({
